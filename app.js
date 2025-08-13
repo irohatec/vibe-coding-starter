@@ -1,11 +1,11 @@
 // ======== ① Firebase 設定（あなたのプロジェクトの値で上書き） ========
 const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIza...xxx",
+  authDomain: "your-project-id.firebaseapp.com",
+  projectId: "your-project-id",
+  storageBucket: "your-project-id.appspot.com",
+  messagingSenderId: "1234567890",
+  appId: "1:1234567890:web:abcdefg12345",
 };
 // ======== ② 生成APIのURL（RenderのURLに置換） ========
 const API_BASE = "https://YOUR-RENDER-SERVICE.onrender.com";
@@ -139,3 +139,4 @@ genBtn.addEventListener("click", async () => {
     setLoading(genBtn, false);
   }
 });
+
