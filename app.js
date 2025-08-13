@@ -30,15 +30,18 @@ const genBtn = document.getElementById("generate-bio");
 const toast = document.getElementById("toast");
 
 // ======== ユーティリティ ========
-function showToast(msg) {
+function showToast(msg, ms = 3000) {
   toast.textContent = msg;
   toast.classList.remove("hidden");
-  setTimeout(() => toast.classList.add("hidden"), 2000);
+  setTimeout(() => toast.classList.add("hidden"), ms);
 }
 function setLoading(el, loading) {
   el.disabled = loading;
   el.textContent = loading ? "処理中..." : el.getAttribute("data-label") || el.textContent;
 }
+
+// デバッグ: 現在のオリジンを表示（承認済みドメイン確認用）
+console.log("[DEBUG] origin =", window.location.origin);
 
 // ======== 認証状態監視 ========
 auth.onAuthStateChanged(async (user) => {
@@ -71,10 +74,25 @@ auth.onAuthStateChanged(async (user) => {
 googleLoginBtn.addEventListener("click", async () => {
   try {
     const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: "select_account" });
     await auth.signInWithPopup(provider);
   } catch (e) {
-    console.error(e);
-    showToast("ログインに失敗しました");
+    console.error("[LOGIN ERROR]", e);
+    const code = e.code || "unknown";
+    const msg = e.message || "no message";
+    let hint = "";
+    if (code.includes("auth/popup-blocked") || code.includes("popup")) {
+      hint = "→ ブラウザのポップアップを許可してください。";
+    } else if (code.includes("auth/unauthorized-domain") || msg.includes("origin")) {
+      hint = "→ Firebaseの承認済みドメインに現在のドメインを追加してください（localhost / 127.0.0.1 / Render）。";
+    } else if (code.includes("auth/operation-not-allowed")) {
+      hint = "→ Authentication > ログイン方法 で Google を有効化してください。";
+    } else if (msg.includes("cookies") || msg.includes("third-party")) {
+      hint = "→ サードパーティCookieを許可してください（accounts.google.com）。";
+    } else if (msg.includes("project") || msg.includes("apiKey") || msg.includes("authDomain")) {
+      hint = "→ app.js の firebaseConfig が正しいか確認してください。";
+    }
+    showToast(`Googleでログインできません: ${code}\n${hint}`);
   }
 });
 
@@ -139,7 +157,3 @@ genBtn.addEventListener("click", async () => {
     setLoading(genBtn, false);
   }
 });
-
-
-
-
