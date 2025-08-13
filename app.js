@@ -6,7 +6,6 @@ const firebaseConfig = {
   storageBucket: "vibe-coding-starter.firebasestorage.app",
   messagingSenderId: "595405240182",
   appId: "1:595405240182:web:8c4e880f6904fad8c16c57",
-  measurementId: "G-C2L6GD90C2"
 };
 // ======== ② 生成APIのURL（RenderのURLに置換） ========
 const API_BASE = "https://vibe-coding-starter.onrender.com";
@@ -140,6 +139,7 @@ genBtn.addEventListener("click", async () => {
     setLoading(genBtn, false);
   }
 });
+
 
 
 
