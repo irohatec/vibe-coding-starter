@@ -8,7 +8,7 @@ const firebaseConfig = {
   appId: "1:1234567890:web:abcdefg12345",
 };
 // ======== ② 生成APIのURL（RenderのURLに置換） ========
-const API_BASE = "https://YOUR-RENDER-SERVICE.onrender.com";
+const API_BASE = "https://vibe-coding-starter.onrender.com";
 
 // ======== Firebase初期化 ========
 firebase.initializeApp(firebaseConfig);
@@ -139,4 +139,5 @@ genBtn.addEventListener("click", async () => {
     setLoading(genBtn, false);
   }
 });
+
 
