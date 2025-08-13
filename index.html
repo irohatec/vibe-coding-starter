@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>バイブコーディング研修スターター</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <div class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-xl shadow">
+    <h1 class="text-2xl font-bold mb-2">バイブコーディング：Googleログイン＋プロフィール＋AI自己紹介</h1>
+    <p class="text-sm text-gray-600 mb-6">
+      1) Googleでログイン → 2) プロフィールを保存 → 3)「AIで自己紹介生成」を押す
+    </p>
+
+    <!-- 未ログイン時 -->
+    <div id="auth-section" class="space-y-4">
+      <button id="google-login" class="px-4 py-2 bg-blue-600 text-white rounded">Googleでログイン</button>
+    </div>
+
+    <!-- ログイン後 -->
+    <div id="app-section" class="hidden">
+      <div class="flex items-center space-x-3 mb-4">
+        <img id="user-photo" src="" alt="" class="w-10 h-10 rounded-full hidden">
+        <div>
+          <div id="user-name" class="font-semibold"></div>
+          <button id="logout" class="text-sm text-red-600 underline">ログアウト</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-3 mb-4">
+        <input id="title" class="w-full p-2 border rounded" placeholder="肩書（例：DXコンサル／ファシリ）">
+        <input id="skills" class="w-full p-2 border rounded" placeholder="スキル（カンマ区切り：AI活用, 業務設計, 研修運営）">
+      </div>
+
+      <div class="flex items-center space-x-2 mb-6">
+        <button id="save-profile" class="px-4 py-2 bg-green-600 text-white rounded">プロフィール保存</button>
+        <button id="generate-bio" class="px-4 py-2 bg-indigo-600 text-white rounded">AIで自己紹介生成</button>
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-600">自己紹介（生成結果を含む）</label>
+        <textarea id="bio" rows="6" class="w-full p-2 border rounded mt-1"></textarea>
+      </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-5 right-5 bg-black text-white text-sm px-4 py-2 rounded hidden"></div>
+  </div>
+
+  <!-- Firebase（compat版：CDNで簡単） -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+
+  <!-- アプリ本体 -->
+  <script src="./app.js"></script>
+</body>
+</html>
