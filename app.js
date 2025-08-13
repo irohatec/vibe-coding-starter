@@ -1,11 +1,12 @@
 // ======== ① Firebase 設定（あなたのプロジェクトの値で上書き） ========
 const firebaseConfig = {
-  apiKey: "AIza...xxx",
-  authDomain: "your-project-id.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project-id.appspot.com",
-  messagingSenderId: "1234567890",
-  appId: "1:1234567890:web:abcdefg12345",
+  apiKey: "AIzaSyDPktgQ_Wr2xkcez4qI_fA28SJlHGthmiQ",
+  authDomain: "vibe-coding-starter.firebaseapp.com",
+  projectId: "vibe-coding-starter",
+  storageBucket: "vibe-coding-starter.firebasestorage.app",
+  messagingSenderId: "595405240182",
+  appId: "1:595405240182:web:8c4e880f6904fad8c16c57",
+  measurementId: "G-C2L6GD90C2"
 };
 // ======== ② 生成APIのURL（RenderのURLに置換） ========
 const API_BASE = "https://vibe-coding-starter.onrender.com";
@@ -139,5 +140,6 @@ genBtn.addEventListener("click", async () => {
     setLoading(genBtn, false);
   }
 });
+
 
 
